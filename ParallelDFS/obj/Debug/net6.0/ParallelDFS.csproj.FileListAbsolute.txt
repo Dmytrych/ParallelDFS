@@ -1,0 +1,15 @@
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\bin\Debug\net6.0\ParallelDFS.exe
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\bin\Debug\net6.0\ParallelDFS.deps.json
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\bin\Debug\net6.0\ParallelDFS.runtimeconfig.json
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\bin\Debug\net6.0\ParallelDFS.dll
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\bin\Debug\net6.0\ParallelDFS.pdb
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ParallelDFS.csproj.AssemblyReference.cache
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ParallelDFS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ParallelDFS.AssemblyInfoInputs.cache
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ParallelDFS.AssemblyInfo.cs
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ParallelDFS.csproj.CoreCompileInputs.cache
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ParallelDFS.dll
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\refint\ParallelDFS.dll
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ParallelDFS.pdb
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ParallelDFS.genruntimeconfig.cache
+C:\Users\karam\RiderProjects\ParallelDFS\ParallelDFS\obj\Debug\net6.0\ref\ParallelDFS.dll
