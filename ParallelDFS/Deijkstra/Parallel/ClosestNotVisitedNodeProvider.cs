@@ -1,61 +1,66 @@
+using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using ParallelDFS.DfsBase;
 
-namespace ParallelDFS.Dfs.Parallel;
-
-public class ClosestNotVisitedNodeProvider
+namespace ParallelDFS.Dfs.Parallel
 {
-    private readonly int usedThreadCount;
-    
-    public ClosestNotVisitedNodeProvider(int usedThreadCount)
+    public class ClosestNotVisitedNodeProvider
     {
-        this.usedThreadCount = usedThreadCount;
-    }
-    
-    public Node Get(IReadOnlyCollection<Node> visitedNodes, ConcurrentDictionary<Node, PathInfo> paths)
-    {
-        var batches = CollectionHelper.Split(usedThreadCount, paths.Keys.ToList());
+        private readonly int usedThreadCount;
         
-        using var countDownEvent = new CountdownEvent(batches.Count);
-        var closestNodesFromBatches = new BlockingCollection<Node>();
-
-        foreach (var batch in batches)
+        public ClosestNotVisitedNodeProvider(int usedThreadCount)
         {
-            var callback = new WaitCallback((callback) =>
-            {
-                var result = GetClosestNotVisitedNode(visitedNodes, batch, paths);
-                if (result != null)
-                {
-                    closestNodesFromBatches.Add(result);
-                }
-                countDownEvent.Signal();
-            });
-            ThreadPool.QueueUserWorkItem(callback);
+            this.usedThreadCount = usedThreadCount;
         }
-
-        countDownEvent.Wait();
-
-        var closestNode = GetClosestNotVisitedNode(visitedNodes, closestNodesFromBatches, paths);
-
-        return closestNode;
-    }
+        
+        public Node Get(IReadOnlyCollection<Node> visitedNodes, ConcurrentDictionary<Node, PathInfo> paths)
+        {
+            var batches = CollectionHelper.Split(usedThreadCount, paths.Keys.ToList());
+            
+            using var countDownEvent = new CountdownEvent(batches.Count);
+            var closestNodesFromBatches = new BlockingCollection<Node>();
     
-    private Node GetClosestNotVisitedNode(IReadOnlyCollection<Node> visitedNodes, IReadOnlyCollection<Node> nodesToProcess, IReadOnlyDictionary<Node, PathInfo> paths)
-    {
-        Node closestNode = null;
-        foreach (var node in nodesToProcess)
-        {
-            if (visitedNodes.Contains(node))
+            foreach (var batch in batches)
             {
-                continue;
+                var callback = new WaitCallback((callback) =>
+                {
+                    var result = GetClosestNotVisitedNode(visitedNodes, batch, paths);
+                    if (result != null)
+                    {
+                        closestNodesFromBatches.Add(result);
+                    }
+                    countDownEvent.Signal();
+                });
+                ThreadPool.QueueUserWorkItem(callback);
             }
+    
+            countDownEvent.Wait();
 
-            if (closestNode == null || paths[closestNode].PathLength > paths[node].PathLength)
-            {
-                closestNode = node;
-            }
+            var closestNode = GetClosestNotVisitedNode(visitedNodes, closestNodesFromBatches, paths);
+    
+            return closestNode;
         }
-
-        return closestNode;
+        
+        private Node GetClosestNotVisitedNode(IReadOnlyCollection<Node> visitedNodes, IReadOnlyCollection<Node> nodesToProcess, IReadOnlyDictionary<Node, PathInfo> paths)
+        {
+            Node closestNode = null;
+            foreach (var node in nodesToProcess)
+            {
+                if (visitedNodes.Contains(node))
+                {
+                    continue;
+                }
+    
+                if (closestNode == null || paths[closestNode].PathLength > paths[node].PathLength)
+                {
+                    closestNode = node;
+                }
+            }
+    
+            return closestNode;
+        }
     }
 }

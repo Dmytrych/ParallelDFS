@@ -1,11 +1,14 @@
-namespace ParallelDFS.DfsBase;
+using System.Collections.Generic;
 
-public class Graph
+namespace ParallelDFS.DfsBase
 {
-    public Graph(IReadOnlyCollection<Node> nodes)
+    public class Graph
     {
-        Nodes = nodes;
-    }
+        public Graph(IReadOnlyCollection<Node> nodes)
+        {
+            Nodes = nodes;
+        }
     
-    public IReadOnlyCollection<Node> Nodes { get; set; }
+        public IReadOnlyCollection<Node> Nodes { get; set; }
+    }
 }

@@ -1,17 +1,18 @@
-namespace ParallelDFS.DfsBase;
-
-public class Edge
+namespace ParallelDFS.DfsBase
 {
-    public Edge(int value, Node from, Node to)
+    public class Edge
     {
-        Value = value;
-        From = from;
-        To = to;
+        public Edge(int value, Node from, Node to)
+        {
+            Value = value;
+            From = from;
+            To = to;
+        }
+    
+        public int Value { get; set; }
+    
+        public Node From { get; set; }
+    
+        public Node To { get; set; }
     }
-    
-    public int Value { get; set; }
-    
-    public Node From { get; set; }
-    
-    public Node To { get; set; }
 }

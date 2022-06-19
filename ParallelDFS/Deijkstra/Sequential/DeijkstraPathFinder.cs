@@ -1,9 +1,10 @@
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
 using ParallelDFS.DfsBase;
 
-namespace ParallelDFS.Dfs.Sequential;
-
-public class DeijkstraPathFinder
+namespace ParallelDFS.Dfs.Sequential
+{
+    public class DeijkstraPathFinder
 {
     public void Process(Graph graph, Node startNode)
     {
@@ -78,4 +79,5 @@ public class DeijkstraPathFinder
             PathLength = paths[visitedEdge.From].PathLength + visitedEdge.Value
         };
     }
+}
 }

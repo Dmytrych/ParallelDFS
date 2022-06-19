@@ -1,17 +1,22 @@
-namespace ParallelDFS.Dfs.Parallel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-public static class CollectionHelper
+namespace ParallelDFS.Dfs.Parallel
 {
-    public static IReadOnlyCollection<IReadOnlyCollection<T>> Split<T>(int batchCount, IReadOnlyCollection<T> items)
+    public static class CollectionHelper
     {
-        var batchSize = (int)Math.Ceiling((double)items.Count / batchCount);
-        var batches = new List<List<T>>();
-
-        for (int i = 0; i < batchCount; i++)
+        public static IReadOnlyCollection<IReadOnlyCollection<T>> Split<T>(int batchCount, IReadOnlyCollection<T> items)
         {
-            batches.Add(items.Skip(i * batchSize).Take(batchSize).ToList());
-        }
+            var batchSize = (int)Math.Ceiling((double)items.Count / batchCount);
+            var batches = new List<List<T>>();
 
-        return batches;
+            for (int i = 0; i < batchCount; i++)
+            {
+                batches.Add(items.Skip(i * batchSize).Take(batchSize).ToList());
+            }
+
+            return batches;
+        }
     }
 }

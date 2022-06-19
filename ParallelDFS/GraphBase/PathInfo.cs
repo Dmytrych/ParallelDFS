@@ -1,8 +1,11 @@
-namespace ParallelDFS.DfsBase;
+using System.Collections.Generic;
 
-public class PathInfo
+namespace ParallelDFS.DfsBase
 {
-    public int PathLength { get; set; }
+    public class PathInfo
+    {
+        public int PathLength { get; set; }
 
-    public IReadOnlyCollection<Edge> Path { get; set; } = new List<Edge>();
+        public IReadOnlyCollection<Edge> Path { get; set; } = new List<Edge>();
+    }
 }

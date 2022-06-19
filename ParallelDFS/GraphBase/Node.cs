@@ -1,8 +1,11 @@
-namespace ParallelDFS.DfsBase;
+using System.Collections.Generic;
 
-public class Node
+namespace ParallelDFS.DfsBase
 {
-    public int Id { get; set; }
+    public class Node
+    {
+        public int Id { get; set; }
     
-    public IReadOnlyCollection<Edge> Edges { get; set; } = new List<Edge>();
+        public IReadOnlyCollection<Edge> Edges { get; set; } = new List<Edge>();
+    }
 }
